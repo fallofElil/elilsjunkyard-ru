@@ -1,0 +1,32 @@
+name: Deploy
+on: [push]
+jobs:
+
+	build:
+		name: Build
+		runs-on: ubuntu-latest
+		steps:
+			- run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+			- uses: actions/checkout@v1
+
+			- name: Copy repository contents via scp
+				uses: actions/checkout@master
+				env:
+					HOST: ${{ secrects.HOST }}
+					USERNAME: ${{ secrets.USERNAME }}
+        	PORT: ${{ secrets.PORT }}
+        	KEY: ${{ secrets.SSHKEY }}
+				with:
+					source: "."
+					target: "/var/www/elilsjunkyard.ru"
+
+			- name: Executing remote command
+      	uses: appleboy/ssh-action@master
+      	with:
+        	host: ${{ secrets.HOST }}
+        	USERNAME: ${{ secrets.USERNAME }}
+        	PORT: ${{ secrets.PORT }}
+        	KEY: ${{ secrets.SSHKEY }}
+        	script: ls
+
+			- run: echo "🍏 This job's status is ${{ job.status }}."
