@@ -8,3 +8,6 @@ indent_size = 2
 
 [*.{html,css,js}]
 charset = utf-8
+
+[*.yml]
+indent_style = space
