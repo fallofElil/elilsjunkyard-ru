@@ -20,7 +20,7 @@ jobs:
       with:
         source: "."
         target: "/var/www/elilsjunkyard.ru"
-
+        
     - name: Executing remote command
       uses: appleboy/ssh-action@master
       with:
@@ -29,4 +29,5 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: ls
+    
     - run: echo "🍏 This job's status is ${{ job.status }}."
