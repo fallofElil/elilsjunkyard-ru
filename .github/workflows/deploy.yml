@@ -16,6 +16,6 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
       with:
         source: "."
-        target: "/var/www/elilsjunkyard.ru"
+        target: "/var/www/elilsjunkyard.ru/html"
     
     - run: echo "🍏 This job's status is ${{ job.status }}."
